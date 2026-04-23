@@ -1,0 +1,71 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: trust_electric_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: trust_electric
+      POSTGRES_USER: trust
+      POSTGRES_PASSWORD: trust_dev_only
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trust -d trust_electric"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - trust_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: trust_electric_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - trust_network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: trust_electric_backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://trust:trust_dev_only@postgres:5432/trust_electric
+      REDIS_URL: redis://redis:6379
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    networks:
+      - trust_network
+    profiles:
+      - full
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  trust_network:
+    driver: bridge

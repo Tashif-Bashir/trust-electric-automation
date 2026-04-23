@@ -1,0 +1,31 @@
+{
+  "name": "trust-electric-automation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI-powered lead generation and business automation for Trust Electric Heating Ltd",
+  "workspaces": [
+    "landing-page",
+    "dashboard",
+    "ai-content",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "bash scripts/dev.sh",
+    "stop": "bash scripts/stop.sh",
+    "landing": "npm run dev --workspace=landing-page",
+    "dashboard": "npm run dev --workspace=dashboard",
+    "build:landing": "npm run build --workspace=landing-page",
+    "build:dashboard": "npm run build --workspace=dashboard",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tashif-Bashir/trust-electric-automation.git"
+  },
+  "author": "Bash (Tashif Bashir)",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* ── Brand token definitions (Tailwind v4 @theme) ─────────── */
+@theme {
+  /* Brand colours */
+  --color-brand-dark: #1a1a2e;
+  --color-brand-amber: #e8833a;
+  --color-brand-tan: #d4a574;
+  --color-brand-cream: #f5f1ec;
+  --color-brand-success: #2d6a4f;
+  --color-brand-warning: #c9302c;
+
+  /* Typography — resolved from next/font CSS variables */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+}
+
+/* ── CSS custom properties for brand colours ───────────────── */
+:root {
+  --brand-dark: #1a1a2e;
+  --brand-amber: #e8833a;
+  --brand-tan: #d4a574;
+  --brand-cream: #f5f1ec;
+  --brand-success: #2d6a4f;
+  --brand-warning: #c9302c;
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--brand-cream);
+  color: var(--brand-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Selection colour ──────────────────────────────────────── */
+::selection {
+  background-color: var(--brand-amber);
+  color: #ffffff;
+}
+
+/* ── Focus styles ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brand-amber);
+  outline-offset: 2px;
+}

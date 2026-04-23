@@ -1,0 +1,69 @@
+# ============================================================
+# Trust Electric Heating Automation — .gitignore
+# ============================================================
+
+# Environment files — NEVER commit real credentials
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Node
+node_modules/
+.next/
+dist/
+build/
+.cache/
+.parcel-cache/
+*.tsbuildinfo
+.npm
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+.eggs/
+htmlcov/
+.coverage
+coverage.xml
+
+# IDE
+.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database
+*.sqlite
+*.db
+
+# Docker volumes (local data)
+postgres_data/
+redis_data/
+
+# Screenshots / large media generated locally
+docs/screenshots/
