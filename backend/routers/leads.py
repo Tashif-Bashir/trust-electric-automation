@@ -8,6 +8,7 @@ from sqlalchemy.orm import selectinload
 
 from database import get_db
 from models import Lead, LeadNote
+from services.notification import notify_new_lead
 from schemas import (
     LeadCreate,
     LeadNoteCreate,
@@ -24,9 +25,8 @@ def _lead_to_response(lead: Lead) -> LeadResponse:
     return LeadResponse.model_validate(lead)
 
 
-async def _notify_new_lead(lead_id: uuid.UUID) -> None:
-    """Placeholder — Prompt 2.2 wires real SMS/email here."""
-    pass
+def _run_notifications(lead: Lead) -> None:
+    notify_new_lead(lead)
 
 
 # ---------------------------------------------------------------------------
@@ -54,7 +54,7 @@ async def create_lead(
     await db.commit()
     await db.refresh(lead)
 
-    background_tasks.add_task(_notify_new_lead, lead.id)
+    background_tasks.add_task(_run_notifications, lead)
 
     result = await db.execute(
         select(Lead).options(selectinload(Lead.emails), selectinload(Lead.lead_notes)).where(Lead.id == lead.id)

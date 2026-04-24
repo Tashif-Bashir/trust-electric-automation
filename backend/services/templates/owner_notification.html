@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New NEOS Lead</title>
+</head>
+<body style="margin:0;padding:0;background:#f5f1ec;font-family:'DM Sans',Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f1ec;padding:32px 16px;">
+  <tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
+
+      <!-- Header -->
+      <tr>
+        <td style="background:#1a1a2e;padding:24px 32px;border-radius:12px 12px 0 0;">
+          <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+              <td>
+                <div style="font-size:28px;font-weight:900;color:#e8833a;letter-spacing:-0.5px;line-height:1;">trust</div>
+                <div style="font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:2px;margin-top:2px;">Electric Heating</div>
+              </td>
+              <td align="right">
+                <span style="background:#e8833a;color:#fff;font-size:11px;font-weight:700;padding:6px 14px;border-radius:20px;letter-spacing:0.5px;">🔥 NEW LEAD</span>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- Alert banner -->
+      <tr>
+        <td style="background:#e8833a;padding:14px 32px;text-align:center;">
+          <p style="margin:0;color:#fff;font-size:13px;font-weight:600;letter-spacing:0.3px;">
+            ⚡ First 5 minutes are critical for conversion — call now
+          </p>
+        </td>
+      </tr>
+
+      <!-- Body -->
+      <tr>
+        <td style="background:#fff;padding:32px;">
+          <h1 style="margin:0 0 8px;font-size:24px;color:#1a1a2e;font-weight:700;">New Quote Request</h1>
+          <p style="margin:0 0 28px;font-size:14px;color:#64748b;">Received {{received_at}} &nbsp;·&nbsp; Source: website</p>
+
+          <!-- Lead details table -->
+          <table width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;margin-bottom:28px;">
+            <tr style="background:#f8fafc;">
+              <td style="padding:12px 16px;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;width:140px;">Name</td>
+              <td style="padding:12px 16px;font-size:15px;font-weight:600;color:#1a1a2e;">{{full_name}}</td>
+            </tr>
+            <tr style="border-top:1px solid #e2e8f0;">
+              <td style="padding:12px 16px;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;">Phone</td>
+              <td style="padding:12px 16px;font-size:15px;color:#1a1a2e;">
+                <a href="tel:{{phone}}" style="color:#e8833a;text-decoration:none;font-weight:700;">{{phone}}</a>
+              </td>
+            </tr>
+            <tr style="border-top:1px solid #e2e8f0;background:#f8fafc;">
+              <td style="padding:12px 16px;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;">Email</td>
+              <td style="padding:12px 16px;font-size:15px;color:#1a1a2e;">
+                <a href="mailto:{{email}}" style="color:#e8833a;text-decoration:none;">{{email}}</a>
+              </td>
+            </tr>
+            <tr style="border-top:1px solid #e2e8f0;">
+              <td style="padding:12px 16px;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;">Postcode</td>
+              <td style="padding:12px 16px;font-size:15px;color:#1a1a2e;">{{postcode}}</td>
+            </tr>
+            <tr style="border-top:1px solid #e2e8f0;background:#f8fafc;">
+              <td style="padding:12px 16px;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;">Property</td>
+              <td style="padding:12px 16px;font-size:15px;color:#1a1a2e;">{{property_type}}</td>
+            </tr>
+            <tr style="border-top:1px solid #e2e8f0;">
+              <td style="padding:12px 16px;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;">Rooms</td>
+              <td style="padding:12px 16px;font-size:15px;color:#1a1a2e;">{{rooms_to_heat}}</td>
+            </tr>
+            <tr style="border-top:1px solid #e2e8f0;background:#f8fafc;">
+              <td style="padding:12px 16px;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;">Heating</td>
+              <td style="padding:12px 16px;font-size:15px;color:#1a1a2e;">{{current_heating}}</td>
+            </tr>
+            {{#message}}
+            <tr style="border-top:1px solid #e2e8f0;">
+              <td style="padding:12px 16px;font-size:12px;font-weight:600;color:#94a3b8;text-transform:uppercase;letter-spacing:0.8px;vertical-align:top;">Message</td>
+              <td style="padding:12px 16px;font-size:14px;color:#475569;font-style:italic;">{{message}}</td>
+            </tr>
+            {{/message}}
+          </table>
+
+          <!-- CTA buttons -->
+          <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="48%" style="padding-right:8px;">
+                <a href="tel:{{phone}}" style="display:block;background:#2d6a4f;color:#fff;text-align:center;padding:14px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;">
+                  📞 Call Now
+                </a>
+              </td>
+              <td width="48%" style="padding-left:8px;">
+                <a href="{{dashboard_url}}/leads" style="display:block;background:#e8833a;color:#fff;text-align:center;padding:14px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;">
+                  View in Dashboard →
+                </a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <!-- Footer -->
+      <tr>
+        <td style="background:#1a1a2e;padding:20px 32px;border-radius:0 0 12px 12px;text-align:center;">
+          <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.3);">
+            Trust Electric Heating Ltd &nbsp;·&nbsp; Elmfield Business Park, Garforth, Leeds LS25 2JY
+          </p>
+        </td>
+      </tr>
+
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>
