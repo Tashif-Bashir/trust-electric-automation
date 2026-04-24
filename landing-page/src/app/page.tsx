@@ -1,3 +1,6 @@
+"use client";
+
+import { useLeadForm } from "@/hooks/useLeadForm";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
@@ -8,10 +11,12 @@ import LeadForm from "@/components/LeadForm";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  const { open } = useLeadForm();
+
   return (
     <>
-      <Navigation />
-      <Hero />
+      <Navigation onOpenModal={open} />
+      <Hero onOpenModal={open} />
       <Features />
       <Calculator />
       <HowItWorks />
