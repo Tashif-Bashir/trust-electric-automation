@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/Button";
 
 const schema = z.object({
   fullName: z.string().min(2, "Please enter your full name"),
-  email: z.string().email("Please enter a valid email address"),
+  email: z.email("Please enter a valid email address"),
   phone: z
     .string()
     .regex(
@@ -92,11 +92,11 @@ interface LeadFormCardProps {
 export function LeadFormCard({ onSuccess }: LeadFormCardProps) {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [firstName, setFirstName] = useState("");
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -108,11 +108,10 @@ export function LeadFormCard({ onSuccess }: LeadFormCardProps) {
     },
   });
 
-  const firstName = (watch("fullName") ?? "").trim().split(" ")[0];
-
   const onSubmit = async (data: FormValues) => {
     setSubmitState("idle");
     setErrorMessage("");
+    setFirstName(data.fullName.trim().split(" ")[0]);
     try {
       const payload = {
         full_name: data.fullName,

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef, type MouseEvent } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 
 interface HeroProps {
@@ -57,6 +58,25 @@ function DecorativeSVG() {
 }
 
 export default function Hero({ onOpenModal }: HeroProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const rotateX = useSpring(useTransform(rawY, [-150, 150], [8, -8]), { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(useTransform(rawX, [-150, 150], [-8, 8]), { stiffness: 300, damping: 30 });
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    rawX.set(e.clientX - (rect.left + rect.width / 2));
+    rawY.set(e.clientY - (rect.top + rect.height / 2));
+  };
+
+  const handleMouseLeave = () => {
+    rawX.set(0);
+    rawY.set(0);
+  };
+
   const scrollToCalculator = () => {
     document.querySelector("#calculator")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -147,14 +167,18 @@ export default function Hero({ onOpenModal }: HeroProps) {
 
           {/* ── Right column — product card ─────────────────────── */}
           <motion.div
+            ref={cardRef}
             className="flex-1 w-full max-w-md lg:max-w-none"
             variants={cardVariants}
             initial="hidden"
             animate="visible"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
           >
             <motion.div
               animate={{ y: [0, -14, 0] }}
               transition={{ duration: 4, ease: "easeInOut", repeat: Infinity }}
+              style={{ rotateX, rotateY, transformPerspective: 1200 }}
               className="relative"
             >
               {/* PATENTED badge */}

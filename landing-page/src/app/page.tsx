@@ -10,6 +10,8 @@ import Testimonials from "@/components/Testimonials";
 import LeadForm, { LeadFormCard } from "@/components/LeadForm";
 import Footer from "@/components/Footer";
 import Modal from "@/components/ui/Modal";
+import ScrollToTop from "@/components/ScrollToTop";
+import CookieBanner from "@/components/CookieBanner";
 
 export default function Home() {
   const { isOpen, open, close } = useLeadForm();
@@ -41,6 +43,9 @@ export default function Home() {
           <LeadFormCard onSuccess={close} />
         </div>
       </Modal>
+
+      <ScrollToTop />
+      <CookieBanner />
     </>
   );
 }
