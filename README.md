@@ -15,7 +15,7 @@ Six automations working together to capture leads, nurture them, and give the bu
 | 2 | **Lead Notifications** | Every new lead triggers an SMS + email to the sales team within 60 seconds, plus a confirmation to the customer. |
 | 3 | **Follow-Up Sequences** | Automated 4-step email sequence over 10 days. Respects lead status — never emails converted or lost leads. |
 | 4 | **Lead Dashboard** | React dashboard for managing leads: filter, search, update status, add notes, view activity timeline. |
-| 5 | **AI Content Generator** | Claude-powered tool to generate Instagram posts, emails, blog outlines, Google ads, and more — all on-brand. |
+| 5 | **AI Content Generator** | AI-powered tool to generate Instagram posts, emails, blog outlines, Google ads, and more — all on-brand. |
 | 6 | **Business Overview** | Unified dashboard pulling live data from Xero (invoices/revenue) and Unleashed (stock/orders). |
 
 ---
@@ -27,7 +27,7 @@ Frontend (Landing Page): Next.js 14 · TypeScript · Tailwind CSS · framer-moti
 Frontend (Dashboard):    React 18 · Vite · TanStack Query · Recharts
 Backend:                 FastAPI · PostgreSQL 16 · Redis 7 · SQLAlchemy
 Notifications:           Twilio (SMS) · Resend (Email)
-AI:                      Anthropic Claude API
+AI:                      Anthropic API
 Integrations:            Xero OAuth 2.0 · Unleashed HMAC-SHA256
 Deployment:              Vercel (frontends) · Railway (backend)
 ```
@@ -72,7 +72,7 @@ Deployment:              Vercel (frontends) · Railway (backend)
                           │
               ┌───────────┼───────────┐
          ┌────▼────┐ ┌────▼────┐ ┌───▼──────┐
-         │ Twilio  │ │ Resend  │ │  Claude  │
+         │ Twilio  │ │ Resend  │ │   AI     │
          │  (SMS)  │ │ (Email) │ │   API    │
          └─────────┘ └─────────┘ └──────────┘
 ```
