@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException, Query, Request
 from fastapi.responses import RedirectResponse
 
 from config import settings
+from services import unleashed as unleashed_svc
 from services import xero as xero_svc
 
 logger = logging.getLogger(__name__)
@@ -93,3 +94,60 @@ async def xero_top_customers(limit: int = Query(10, ge=1, le=50)):
     except Exception as exc:
         logger.error("Failed to fetch Xero customers: %s", exc)
         raise HTTPException(status_code=500, detail="Failed to fetch customers")
+
+
+# ---------------------------------------------------------------------------
+# Unleashed
+# ---------------------------------------------------------------------------
+
+@router.get("/unleashed/status")
+async def unleashed_status():
+    return {
+        "connected": unleashed_svc.is_connected(),
+        "mock_mode": settings.use_mock_data,
+    }
+
+
+@router.get("/unleashed/products")
+async def unleashed_products():
+    try:
+        return await unleashed_svc.get_products()
+    except Exception as exc:
+        logger.error("Failed to fetch Unleashed products: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to fetch products")
+
+
+@router.get("/unleashed/stock")
+async def unleashed_stock():
+    try:
+        return await unleashed_svc.get_stock_on_hand()
+    except Exception as exc:
+        logger.error("Failed to fetch Unleashed stock: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to fetch stock")
+
+
+@router.get("/unleashed/orders")
+async def unleashed_orders(days: int = Query(30, ge=1, le=90)):
+    try:
+        return await unleashed_svc.get_recent_orders(days=days)
+    except Exception as exc:
+        logger.error("Failed to fetch Unleashed orders: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to fetch orders")
+
+
+@router.get("/unleashed/alerts")
+async def unleashed_alerts(threshold: int = Query(10, ge=1, le=100)):
+    try:
+        return await unleashed_svc.get_low_stock_alerts(threshold=threshold)
+    except Exception as exc:
+        logger.error("Failed to fetch Unleashed alerts: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to fetch alerts")
+
+
+@router.get("/unleashed/summary")
+async def unleashed_summary():
+    try:
+        return await unleashed_svc.get_sales_summary()
+    except Exception as exc:
+        logger.error("Failed to fetch Unleashed summary: %s", exc)
+        raise HTTPException(status_code=500, detail="Failed to fetch summary")
