@@ -144,20 +144,19 @@ bash scripts/dev.sh
 
 ```
 trust-electric-automation/
-├── CLAUDE.md               Project context for Claude Code
 ├── docker-compose.yml      PostgreSQL + Redis local dev
 ├── .env.example            Environment variable template
 ├── package.json            npm workspace root
 ├── pyproject.toml          Python shared config
 │
-├── landing-page/           Automation 1 — Next.js 14 lead capture
+├── landing-page/           Automation 1 — Next.js lead capture
 ├── backend/                Automations 2, 6 — FastAPI + DB
 ├── dashboard/              Automation 4 — React lead management
 ├── ai-content/             Automation 5 — AI content generator UI
 ├── automations/            Automation 3 — Python follow-up scheduler
 ├── shared/                 TypeScript types shared across frontends
 ├── scripts/                dev.sh, stop.sh convenience scripts
-└── docs/                   Prompt pack, testing guide, demo script
+└── docs/                   Testing guide and demo script
 ```
 
 ---
