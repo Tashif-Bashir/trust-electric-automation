@@ -10,6 +10,8 @@ from schemas import LeadStats
 
 router = APIRouter(tags=["Stats"])
 
+STATUSES = ["new", "contacted", "qualified", "quoted", "converted", "lost"]
+
 
 @router.get("/leads/stats", response_model=LeadStats)
 async def get_stats(db: AsyncSession = Depends(get_db)):
@@ -28,13 +30,27 @@ async def get_stats(db: AsyncSession = Depends(get_db)):
     today = await count(base.where(Lead.created_at >= today_start))
     this_week = await count(base.where(Lead.created_at >= week_start))
     this_month = await count(base.where(Lead.created_at >= month_start))
-    new_leads = await count(base.where(Lead.status == "new"))
-    contacted = await count(base.where(Lead.status == "contacted"))
-    qualified = await count(base.where(Lead.status == "qualified"))
     converted = await count(base.where(Lead.status == "converted"))
-    lost = await count(base.where(Lead.status == "lost"))
+
+    by_status: dict[str, int] = {}
+    for s in STATUSES:
+        by_status[s] = await count(base.where(Lead.status == s))
 
     conversion_rate = round((converted / total * 100), 1) if total > 0 else 0.0
+
+    # Average hours from created_at to contacted_at for leads that have been contacted
+    avg_result = await db.execute(
+        select(
+            func.avg(
+                func.extract(
+                    "epoch",
+                    Lead.contacted_at - Lead.created_at,
+                )
+            )
+        ).where(Lead.deleted_at.is_(None), Lead.contacted_at.is_not(None))
+    )
+    avg_seconds = avg_result.scalar_one()
+    avg_hours = round(avg_seconds / 3600, 1) if avg_seconds else 0.0
 
     return LeadStats(
         total_leads=total,
@@ -42,9 +58,6 @@ async def get_stats(db: AsyncSession = Depends(get_db)):
         leads_this_week=this_week,
         leads_this_month=this_month,
         conversion_rate=conversion_rate,
-        new_leads=new_leads,
-        contacted_leads=contacted,
-        qualified_leads=qualified,
-        converted_leads=converted,
-        lost_leads=lost,
+        average_response_time_hours=avg_hours,
+        by_status=by_status,
     )

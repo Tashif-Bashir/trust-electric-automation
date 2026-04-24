@@ -137,8 +137,5 @@ class LeadStats(BaseModel):
     leads_this_week: int
     leads_this_month: int
     conversion_rate: float
-    new_leads: int
-    contacted_leads: int
-    qualified_leads: int
-    converted_leads: int
-    lost_leads: int
+    average_response_time_hours: float
+    by_status: dict[str, int]

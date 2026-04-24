@@ -1,0 +1,43 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700;900&display=swap");
+
+@theme {
+  --color-brand-dark: #1a1a2e;
+  --color-brand-amber: #e8833a;
+  --color-brand-tan: #d4a574;
+  --color-brand-cream: #f5f1ec;
+  --color-brand-success: #2d6a4f;
+  --color-brand-warning: #c9302c;
+
+  --color-dash-bg: #0a0a14;
+  --color-dash-card: #14141f;
+  --color-dash-border: #1e1e32;
+  --color-dash-text: #f5f1ec;
+  --color-dash-muted: #9ca3af;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: #0a0a14;
+  color: #f5f1ec;
+}
+
+body {
+  margin: 0;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #0a0a14; }
+::-webkit-scrollbar-thumb { background: #2a2a40; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(232,131,58,0.3); }
+
+#root {
+  min-height: 100svh;
+}
