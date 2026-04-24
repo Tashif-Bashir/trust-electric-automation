@@ -1,7 +1,7 @@
 {
   "framework": "nextjs",
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://your-backend.railway.app"
+    "NEXT_PUBLIC_API_URL": "https://trust-electric-api.onrender.com"
   },
   "headers": [
     {
