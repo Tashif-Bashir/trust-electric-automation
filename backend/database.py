@@ -3,8 +3,13 @@ from sqlalchemy.orm import DeclarativeBase
 
 from config import settings
 
+# Render provides postgres:// or postgresql:// — asyncpg requires postgresql+asyncpg://
+_db_url = settings.database_url.replace("postgres://", "postgresql+asyncpg://", 1).replace(
+    "postgresql://", "postgresql+asyncpg://", 1
+)
+
 engine = create_async_engine(
-    settings.database_url,
+    _db_url,
     echo=settings.environment == "development",
     pool_pre_ping=True,
 )
