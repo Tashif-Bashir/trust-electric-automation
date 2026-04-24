@@ -248,7 +248,6 @@ const PIPELINE_STAGES = [
   { key: 'quoted',    label: 'Quoted',    prob: 0.70 },
   { key: 'converted', label: 'Converted', prob: 1.00 },
 ];
-const AVG_DEAL = 1_500;
 
 function PipelineChart() {
   const { data: stats, isLoading } = useStats();
