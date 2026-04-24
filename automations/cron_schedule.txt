@@ -1,0 +1,15 @@
+# Trust Electric — follow-up email cron schedule
+# Add these to your server's crontab (crontab -e)
+# Replace /path/to/project with the actual deployment path
+# Requires: cd automations && pip install -r requirements.txt
+
+# Run follow-up sequences every 15 minutes
+*/15 * * * * cd /path/to/project/automations && python followup_sequences.py >> /var/log/trust-electric/followup.log 2>&1
+
+# Alternative: run individual steps at specific intervals
+# Step 1 (1 hour check) — every 15 mins
+*/15 * * * * cd /path/to/project/automations && python followup_sequences.py --step 1 >> /var/log/trust-electric/followup.log 2>&1
+# Step 2 (24 hour check) — every hour
+0 * * * * cd /path/to/project/automations && python followup_sequences.py --step 2 >> /var/log/trust-electric/followup.log 2>&1
+# Step 3 (72 hour check) — every 6 hours
+0 */6 * * * cd /path/to/project/automations && python followup_sequences.py --step 3 >> /var/log/trust-electric/followup.log 2>&1
