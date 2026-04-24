@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -61,3 +61,38 @@ async def get_stats(db: AsyncSession = Depends(get_db)):
         average_response_time_hours=avg_hours,
         by_status=by_status,
     )
+
+
+@router.get("/leads/monthly")
+async def get_monthly_leads(
+    months: int = Query(6, ge=1, le=12),
+    db: AsyncSession = Depends(get_db),
+):
+    """Return lead counts grouped by month for the last N months."""
+    now = datetime.now(timezone.utc)
+    result = []
+    for i in range(months - 1, -1, -1):
+        # First day of the target month
+        target = (now.replace(day=1) - timedelta(days=i * 28)).replace(day=1)
+        # First day of the following month
+        if target.month == 12:
+            next_month = target.replace(year=target.year + 1, month=1)
+        else:
+            next_month = target.replace(month=target.month + 1)
+
+        r = await db.execute(
+            select(func.count()).select_from(
+                select(Lead)
+                .where(
+                    Lead.deleted_at.is_(None),
+                    Lead.created_at >= target,
+                    Lead.created_at < next_month,
+                )
+                .subquery()
+            )
+        )
+        result.append({
+            "month": target.strftime("%b %Y"),
+            "leads": r.scalar_one(),
+        })
+    return result

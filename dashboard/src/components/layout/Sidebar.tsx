@@ -1,12 +1,13 @@
-import { LayoutDashboard, Mail, Settings, Users, X } from 'lucide-react';
+import { Briefcase, LayoutDashboard, Mail, Settings, Users, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { clsx } from 'clsx';
 
 const navItems = [
   { to: '/', icon: LayoutDashboard, label: 'Overview', exact: true },
-  { to: '/leads', icon: Users, label: 'Leads' },
-  { to: '/emails', icon: Mail, label: 'Emails' },
-  { to: '/settings', icon: Settings, label: 'Settings' },
+  { to: '/business', icon: Briefcase, label: 'Business', exact: false },
+  { to: '/leads', icon: Users, label: 'Leads', exact: false },
+  { to: '/emails', icon: Mail, label: 'Emails', exact: false },
+  { to: '/settings', icon: Settings, label: 'Settings', exact: false },
 ];
 
 interface SidebarProps {
