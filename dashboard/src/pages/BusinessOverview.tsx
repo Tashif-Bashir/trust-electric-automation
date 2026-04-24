@@ -170,10 +170,11 @@ function RevenueLeadsChart() {
             <YAxis yAxisId="right" orientation="right" tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} />
             <Tooltip
               contentStyle={{ background: '#14141f', border: '1px solid #1e1e32', borderRadius: 8, fontSize: 12 }}
-              formatter={(value: unknown, name: string) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              formatter={((value: unknown, name: unknown) => {
                 const v = Number(value);
                 return name === 'revenue' ? [fmt(v), 'Revenue'] : [v, 'Leads'];
-              }}
+              }) as any}
             />
             <Legend wrapperStyle={{ fontSize: 11, color: '#9ca3af' }} />
             <Bar yAxisId="left" dataKey="revenue" name="Revenue" fill="#e8833a" opacity={0.7} radius={[3, 3, 0, 0]} />
@@ -217,10 +218,11 @@ function StockChart() {
             <YAxis type="category" dataKey="name" tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} width={80} />
             <Tooltip
               contentStyle={{ background: '#14141f', border: '1px solid #1e1e32', borderRadius: 8, fontSize: 12 }}
-              formatter={(value: unknown, name: string) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              formatter={((value: unknown, name: unknown) => {
                 const v = Number(value);
                 return name === 'available' ? [v + ' units', 'Available'] : [v + ' units', 'Allocated'];
-              }}
+              }) as any}
             />
             <ReferenceLine x={10} stroke="#ef4444" strokeDasharray="4 4" label={{ value: 'Reorder', position: 'insideTopRight', fill: '#ef4444', fontSize: 10 }} />
             <Bar dataKey="available" name="available" radius={[0, 3, 3, 0]}>
@@ -272,10 +274,11 @@ function PipelineChart() {
             <YAxis tick={{ fill: '#9ca3af', fontSize: 11 }} axisLine={false} tickLine={false} tickFormatter={(v) => fmtShort(v)} />
             <Tooltip
               contentStyle={{ background: '#14141f', border: '1px solid #1e1e32', borderRadius: 8, fontSize: 12 }}
-              formatter={(value: unknown, name: string) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              formatter={((value: unknown, name: unknown) => {
                 const v = Number(value);
                 return name === 'value' ? [fmt(v), 'Pipeline Value'] : [v, 'Leads'];
-              }}
+              }) as any}
             />
             <Bar dataKey="value" name="value" fill="#e8833a" opacity={0.8} radius={[3, 3, 0, 0]} />
           </BarChart>
