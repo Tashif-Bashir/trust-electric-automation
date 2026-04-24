@@ -70,10 +70,22 @@ export default function Navigation({ onOpenModal }: NavigationProps) {
             className="flex flex-col leading-none group"
             aria-label="Trust Electric Heating — home"
           >
-            <span className="font-serif text-2xl font-bold text-brand-dark group-hover:text-brand-amber transition-colors">
-              TRUST
+            <span
+              className={cn(
+                "font-sans font-black text-[1.7rem] leading-none tracking-tight transition-colors duration-300",
+                scrolled
+                  ? "text-brand-amber"
+                  : "text-white"
+              )}
+            >
+              trust<sup className="text-[0.45em] align-super ml-px font-medium">®</sup>
             </span>
-            <span className="font-sans text-[10px] tracking-[0.2em] text-slate-500 uppercase">
+            <span
+              className={cn(
+                "font-sans text-[10px] leading-none mt-0.5 transition-colors duration-300",
+                scrolled ? "text-slate-500" : "text-white/60"
+              )}
+            >
               Electric Heating
             </span>
           </a>

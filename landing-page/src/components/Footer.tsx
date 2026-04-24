@@ -37,10 +37,10 @@ export default function Footer() {
           {/* Column 1 — Brand */}
           <div className="flex flex-col gap-4">
             <div>
-              <p className="font-serif text-2xl font-bold text-brand-cream leading-none">
-                TRUST
+              <p className="font-sans font-black text-[1.7rem] leading-none tracking-tight text-brand-amber">
+                trust<sup className="text-[0.45em] align-super ml-px font-medium">®</sup>
               </p>
-              <p className="font-sans text-[10px] tracking-[0.2em] text-white/40 uppercase">
+              <p className="font-sans text-[10px] text-white/50 leading-none mt-0.5">
                 Electric Heating
               </p>
             </div>
