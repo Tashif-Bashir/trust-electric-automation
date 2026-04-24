@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 from pydantic import ValidationError
 
 from config import settings
-from routers import leads, stats
+from routers import integrations, leads, stats
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -55,6 +55,7 @@ async def general_exception_handler(request: Request, exc: Exception):
 # ---------------------------------------------------------------------------
 app.include_router(stats.router, prefix="/api")
 app.include_router(leads.router, prefix="/api")
+app.include_router(integrations.router, prefix="/api")
 
 
 # ---------------------------------------------------------------------------
