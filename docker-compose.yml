@@ -44,7 +44,7 @@ services:
     container_name: trust_electric_backend
     restart: unless-stopped
     environment:
-      DATABASE_URL: postgresql://trust:trust_dev_only@postgres:5432/trust_electric
+      DATABASE_URL: postgresql+asyncpg://trust:trust_dev_only@postgres:5432/trust_electric
       REDIS_URL: redis://redis:6379
     env_file:
       - .env
