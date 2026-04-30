@@ -87,7 +87,7 @@ export function Overview() {
                 <Skeleton key={i} className="h-10 w-full" />
               ))}
             </div>
-          ) : leadsData?.items.length === 0 ? (
+          ) : (leadsData?.items?.length ?? 0) === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
               <Users size={36} className="text-dash-border mb-3" />
               <p className="text-sm text-dash-muted">No leads yet — share your landing page to start capturing leads!</p>

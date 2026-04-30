@@ -201,10 +201,10 @@ function DetailPanel({
             </section>
 
             {/* Email history */}
-            {lead.emails.length > 0 && (
+            {(lead.emails?.length ?? 0) > 0 && (
               <section>
                 <label className="text-xs font-medium text-dash-muted uppercase tracking-wide block mb-2">
-                  Emails Sent ({lead.emails.length})
+                  Emails Sent ({lead.emails?.length ?? 0})
                 </label>
                 <div className="space-y-1.5">
                   {lead.emails.map((e) => (
@@ -234,10 +234,10 @@ function DetailPanel({
             {/* Notes */}
             <section>
               <label className="text-xs font-medium text-dash-muted uppercase tracking-wide block mb-2">
-                Notes ({lead.lead_notes.length})
+                Notes ({lead.lead_notes?.length ?? 0})
               </label>
 
-              {lead.lead_notes.length > 0 && (
+              {(lead.lead_notes?.length ?? 0) > 0 && (
                 <div className="space-y-2 mb-3">
                   {[...lead.lead_notes]
                     .sort(
@@ -343,7 +343,7 @@ export function Leads() {
   }
 
   function exportCSV() {
-    if (!data?.items.length) return;
+    if (!data?.items?.length) return;
     const headers = [
       'Name',
       'Email',
@@ -433,7 +433,7 @@ export function Leads() {
           {/* Export */}
           <button
             onClick={exportCSV}
-            disabled={!data?.items.length}
+            disabled={!data?.items?.length}
             className="flex items-center gap-1.5 text-sm px-3 py-2 bg-dash-card border border-dash-border text-dash-muted hover:text-brand-amber hover:border-brand-amber/40 rounded-lg disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             <Download size={14} />
@@ -474,7 +474,7 @@ export function Leads() {
                         ))}
                       </tr>
                     ))
-                  : data?.items.length === 0
+                  : (data?.items?.length ?? 0) === 0
                   ? (
                       <tr>
                         <td colSpan={6} className="px-4 py-16 text-center text-dash-muted text-sm">
@@ -510,7 +510,7 @@ export function Leads() {
                           {formatDistanceToNow(new Date(lead.created_at), { addSuffix: true })}
                         </td>
                         <td className="px-4 py-3 hidden xl:table-cell text-xs text-dash-muted">
-                          {lead.lead_notes.length > 0 ? (
+                          {(lead.lead_notes?.length ?? 0) > 0 ? (
                             <span className="text-brand-amber/80">
                               {lead.lead_notes.length} note
                               {lead.lead_notes.length !== 1 ? 's' : ''}
