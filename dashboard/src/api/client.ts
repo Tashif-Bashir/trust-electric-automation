@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const client = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'https://trust-electric-api.onrender.com',
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache' },
 });
 
 client.interceptors.response.use(
