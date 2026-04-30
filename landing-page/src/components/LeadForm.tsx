@@ -125,7 +125,7 @@ export function LeadFormCard({ onSuccess }: LeadFormCardProps) {
         gdpr_consent: data.gdprConsent,
       };
 
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? "https://trust-electric-api.onrender.com";
       const res = await fetch(`${apiUrl}/api/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
