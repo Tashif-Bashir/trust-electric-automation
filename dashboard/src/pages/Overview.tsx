@@ -43,7 +43,7 @@ export function Overview() {
         <StatCard
           title="Avg Response"
           value={
-            stats
+            stats && stats.average_response_time_hours != null
               ? stats.average_response_time_hours < 1
                 ? `${Math.round(stats.average_response_time_hours * 60)}m`
                 : `${stats.average_response_time_hours.toFixed(1)}h`
