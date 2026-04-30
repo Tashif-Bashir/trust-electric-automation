@@ -17,7 +17,7 @@ export function TopBar({ onMenuClick, title }: TopBarProps) {
     return () => clearInterval(id);
   }, []);
 
-  const oneHourAgo = subHours(new Date(), 1).toISOString();
+  const oneHourAgo = subHours(now, 1).toISOString();
   const { data } = useLeads({ date_from: oneHourAgo, page_size: 100 });
   const recentCount = data?.total ?? 0;
 
